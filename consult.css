@@ -1,0 +1,78 @@
+/* 相談の節（予約のタブと問い合わせフォーム）。色・角丸・字の大きさは home.css（モック）に合わせる。
+   タブの切り替えは booking.js、フォームの送信は contact.js。それらが探す id・name・class はここで変えない。 */
+.consult{background:#fff}
+.consult h2.t{margin-bottom:24px}
+.c-lead{max-width:760px;font-size:15.5px;color:var(--sub);margin:0 0 28px}
+/* タブ（JS が動かない時は出さず、予約もフォームも両方見える） */
+.ctabs{display:none;gap:10px;margin:0 0 28px;max-width:640px}
+.tabs-on .ctabs{display:flex}
+.ctab{flex:1;height:52px;font-size:15px;font-weight:700;color:var(--btn);background:#fff;border:1.5px solid var(--btn);border-radius:var(--r);cursor:pointer}
+.ctab[aria-selected="true"]{background:var(--btn);color:#fff;box-shadow:var(--sh)}
+.ctab:focus-visible{outline:2px solid var(--acc-d);outline-offset:3px}
+.cpanel{width:100%}
+.cpanel[hidden]{display:none}
+.booking{margin-top:40px}
+.tabs-on .booking{margin-top:0}
+.cpanel + .cpanel{margin-top:40px}
+.tabs-on .cpanel + .cpanel{margin-top:0}
+/* 予約 */
+.booking-lead{font-size:16px;margin:0 0 16px}
+.booking-steps{list-style:none;counter-reset:b;display:flex;flex-wrap:wrap;gap:8px 28px;margin:0 0 28px;font-size:14px;font-weight:700}
+.booking-steps li{counter-increment:b;display:flex;align-items:center;gap:8px}
+.booking-steps li::before{content:counter(b);width:24px;height:24px;border-radius:50%;background:var(--btn);color:#fff;display:grid;place-items:center;font-size:12px;flex:none}
+#timerex_calendar{min-height:600px;width:100%}
+#timerex_calendar[hidden]{display:none}
+.booking-fallback{font-size:15px;margin:24px 0 0}
+.booking-fallback a{color:var(--btn);text-decoration:underline}
+.booking-note{font-size:13.5px;color:var(--sub);margin:20px 0 0}
+/* フォーム */
+.cform{position:relative;border:1px solid var(--line);border-radius:20px;padding:32px 36px 36px;background:#fff}
+.cform-t{font-size:22px;font-weight:800;line-height:1.5;margin:0 0 22px}
+.hp-field{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:22px 24px}
+.fld{min-width:0}
+.fld.full{grid-column:1/-1}
+.f-top{display:flex;align-items:center;gap:10px;margin-bottom:8px;font-weight:700;font-size:14.5px;line-height:1.6}
+.req{flex:none;font-size:12px;font-weight:800;color:#0f5a77;background:var(--alt);border-radius:999px;padding:0 10px;height:22px;line-height:22px}
+.req.opt{color:var(--sub);background:#eef1f4}
+.fi{display:block;width:100%;height:48px;padding:0 14px;font-size:16px;color:var(--ink);background:#fff;border:1px solid #c3ccd6;border-radius:var(--r)}
+textarea.fi{height:auto;min-height:168px;padding:12px 14px;line-height:1.7;resize:vertical}
+.fi::placeholder{color:#6b7280}
+.fi:focus{outline:2px solid var(--acc);outline-offset:0;border-color:var(--acc-d)}
+.sel{position:relative}
+.sel select{appearance:none;-webkit-appearance:none;padding-right:40px;cursor:pointer}
+.sel:after{content:"";position:absolute;right:18px;top:50%;width:8px;height:8px;border-right:2px solid var(--sub);border-bottom:2px solid var(--sub);transform:translateY(-70%) rotate(45deg);pointer-events:none}
+.radios{display:flex;flex-wrap:wrap;gap:10px 28px}
+.rd{display:flex;align-items:center;gap:8px;font-size:15px;cursor:pointer}
+.rd input,.agree input{width:20px;height:20px;accent-color:var(--btn);flex:none;cursor:pointer}
+.file{position:relative;display:inline-flex;align-items:center;max-width:100%;height:48px;padding:0 20px;border:1.5px dashed #8dbfd3;border-radius:var(--r);background:var(--card);color:var(--btn);font-weight:700;font-size:15px;cursor:pointer}
+.file input[type=file]{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
+.file:focus-within{outline:2px solid var(--acc-d);outline-offset:2px}
+.file-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.file-remove{margin:8px 0 0;padding:4px 12px;font-size:13px;border:1px solid #c3ccd6;border-radius:999px;background:#fff;color:var(--ink);cursor:pointer}
+.file-remove[hidden]{display:none}
+.pp-note{font-size:14px;color:var(--sub);margin:0 0 10px}
+.pp-note a{color:var(--btn);text-decoration:underline}
+.agree{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:15px;cursor:pointer}
+.cf-turnstile-slot{margin:24px 0 0}
+.send{margin-top:24px;min-width:220px}
+.send[disabled]{opacity:.6;cursor:wait}
+.form-status{margin:12px 0 0;font-size:14px;line-height:1.7;color:var(--sub)}
+.form-status.is-error{color:#b4231a}
+/* 入力の誤りの案内（contact.js が欄の下に出す） */
+.field-error{color:#b4231a;font-size:13px;line-height:1.6;margin:6px 0 0}
+.cform [aria-invalid="true"]{border-color:#b4231a!important;outline:1px solid #b4231a}
+.cform [role="radiogroup"][aria-invalid="true"]{outline:1px solid #b4231a;outline-offset:4px;border-radius:4px}
+@media (max-width:899px){
+ .consult .c-lead{max-width:none}
+}
+@media (max-width:640px){
+ .consult h2.t{margin-bottom:20px}
+ .ctab{font-size:14px;padding:0 6px}
+ .booking-steps{flex-direction:column;align-items:flex-start}
+ /* 狭い窓では TimeRex が幅 550px 以上を求めるので、枠の中に収める */
+ #timerex_calendar>div{min-width:0!important}
+ .cform{padding:22px 18px 26px;border-radius:16px}
+ .fgrid{grid-template-columns:1fr}
+ .send{width:100%}
+}
